@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.*;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -81,6 +82,11 @@ public class Application {
   private int nx; 
   private int ny;
   private String target;
+
+  @GetMapping(value="/universe", produces=MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<Object> universe() {
+    return new ResponseEntity(universe, HttpStatus.OK);
+  }
 
   @GetMapping("/command")
   public String command(final String command) {
